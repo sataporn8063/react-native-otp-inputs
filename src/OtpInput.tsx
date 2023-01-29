@@ -63,12 +63,13 @@ const OtpInput = forwardRef<TextInput, Props>(
 
     return (
       // @ts-expect-error
-      <View style={[inputContainerStyles, focused && focusStyles]}>
-        {/* @ts-expect-error */}
+     <View style={[inputContainerStyles, focused && focusStyles]}>
         {secureTextEntry && inputValue ? (
+          //@ts-expect-error
           <View
             style={[
               inputContainerStyles,
+              // eslint-disable-next-line react-native/no-inline-styles
               {
                 position: 'absolute',
                 top: 0,
@@ -81,17 +82,26 @@ const OtpInput = forwardRef<TextInput, Props>(
               },
             ]}
           >
+            {/* @ts-expect-error /}
             <View
-              style={{
-                zIndex: 999,
-                width: 12,
-                height: 12,
-                backgroundColor: 'black',
-                borderRadius: 6,
-              }}
+              style={[
+                // eslint-disable-next-line react-native/no-inline-styles
+                {
+                  zIndex: 999,
+                },
+                // eslint-disable-next-line react-native/no-inline-styles
+                {
+                  zIndex: 999,
+                  width: 12,
+                  height: 12,
+                  backgroundColor: 'black',
+                  borderRadius: 6,
+                },
+              ]}
             />
           </View>
         ) : null}
+        {/ @ts-expect-error */}
         <TextInput
           autoFocus={autoFocus}
           onBlur={() => setFocused(false)}
